@@ -42,17 +42,58 @@ nav {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.25rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
 }
 
-nav a {
+nav .nav-links a {
   color: var(--accent);
   text-decoration: none;
   margin-right: 1rem;
   font-weight: 600;
 }
 
-nav a:hover {
+nav .nav-links a:hover {
   text-decoration: underline;
+}
+
+body > .lang-switch {
+  display: flex;
+  max-width: var(--max-width);
+  margin: 1.25rem auto 0;
+  padding: 0;
+  justify-content: flex-end;
+  width: fit-content;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.lang-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+}
+
+.lang-switch button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.lang-switch button:hover:not(.active) {
+  background: #f0f7fb;
+}
+
+[data-lang-block][hidden] {
+  display: none !important;
 }
 
 main {

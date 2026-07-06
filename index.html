@@ -1,61 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Waterfall — Focus zones with geofenced app blocking</title>
+    <title>Waterfall — 지도 위 포커스 존</title>
     <meta
       name="description"
-      content="Waterfall helps you stay focused by blocking selected apps when you enter a location-based focus zone on the map."
+      content="워터폴은 지도 위 포커스 존에 들어가면 선택한 앱을 차단해 집중을 돕는 앱입니다."
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/i18n.js" defer></script>
   </head>
-  <body>
-    <header>
-      <h1>Waterfall</h1>
-      <p>Focus zones on the map. Block distracting apps when you arrive.</p>
-    </header>
+  <body data-default-lang="ko">
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="ko" class="active" aria-pressed="true">한국어</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false">English</button>
+    </div>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-    </nav>
-
-    <section class="hero">
-      <div class="hero-card">
-        <h2>How it works</h2>
-        <ol>
-          <li>Create a <strong>waterfall</strong> — a focus zone on the map with a radius you choose.</li>
-          <li>When you enter the zone, Waterfall can start a focus session and block apps you selected.</li>
-          <li>When you leave, blocking turns off and your session is saved.</li>
-        </ol>
-
-        <h2>Platforms</h2>
-        <ul>
-          <li><strong>iOS:</strong> Uses Apple Screen Time (Family Controls) to shield selected apps.</li>
-          <li><strong>Android:</strong> Uses an accessibility-based blocking flow for selected apps.</li>
-        </ul>
-
-        <p>
-          Waterfall uses your device location to detect when you enter or leave a focus zone,
-          including while the app is in the background.
-        </p>
-
-        <div class="cta-row">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html" class="secondary">Terms of Use</a>
-          <a href="https://github.com/Halley04/Waterfall-docs/issues" class="secondary">Contact / Support</a>
+    <div data-lang-block="ko">
+      <span data-page-title hidden>Waterfall — 지도 위 포커스 존</span>
+      <header>
+        <h1>Waterfall</h1>
+        <p>지도 위 포커스 존. 도착하면 방해 앱을 차단합니다.</p>
+      </header>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html">홈</a>
+          <a href="privacy.html">개인정보 처리방침</a>
+          <a href="terms.html">이용약관</a>
         </div>
-      </div>
-    </section>
+      </nav>
+      <section class="hero">
+        <div class="hero-card">
+          <h2>이용 방법</h2>
+          <ol>
+            <li>지도에 <strong>워터폴</strong>(포커스 존)을 만들고 반경을 설정합니다.</li>
+            <li>존에 들어가면 집중 세션이 시작되고 선택한 앱이 차단될 수 있습니다.</li>
+            <li>나가면 차단이 해제되고 세션이 저장됩니다.</li>
+          </ol>
+          <h2>플랫폼</h2>
+          <ul>
+            <li><strong>iOS:</strong> Apple 스크린 타임(가족 제어)으로 앱 차단</li>
+            <li><strong>Android:</strong> 접근성 기반 차단 흐름</li>
+          </ul>
+          <p>
+            백그라운드를 포함한 위치 정보로 포커스 존 진입·이탈을 감지합니다.
+          </p>
+          <div class="cta-row">
+            <a href="privacy.html">개인정보 처리방침</a>
+            <a href="terms.html" class="secondary">이용약관</a>
+            <a href="https://github.com/Halley04/Waterfall-docs/issues" class="secondary">문의 / 지원</a>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <p>© 2026 Passionate Mind. 번들 ID: <code>com.passionatemind.waterfall</code></p>
+      </footer>
+    </div>
 
-    <footer>
-      <p>© 2026 Passionate Mind. Bundle ID: <code>com.passionatemind.waterfall</code></p>
-      <p>
-        App Store and Google Play listings, when available, will link to this site for legal
-        and support information.
-      </p>
-    </footer>
+    <div data-lang-block="en" hidden>
+      <span data-page-title hidden>Waterfall — Focus zones on the map</span>
+      <header>
+        <h1>Waterfall</h1>
+        <p>Focus zones on the map. Block distracting apps when you arrive.</p>
+      </header>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+        </div>
+      </nav>
+      <section class="hero">
+        <div class="hero-card">
+          <h2>How it works</h2>
+          <ol>
+            <li>Create a <strong>waterfall</strong> — a focus zone with a radius you choose.</li>
+            <li>When you enter, a focus session can start and selected apps may be blocked.</li>
+            <li>When you leave, blocking turns off and your session is saved.</li>
+          </ol>
+          <h2>Platforms</h2>
+          <ul>
+            <li><strong>iOS:</strong> Apple Screen Time (Family Controls)</li>
+            <li><strong>Android:</strong> Accessibility-based blocking</li>
+          </ul>
+          <p>Location is used to detect zone enter/exit, including in the background.</p>
+          <div class="cta-row">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html" class="secondary">Terms of Use</a>
+            <a href="https://github.com/Halley04/Waterfall-docs/issues" class="secondary">Contact / Support</a>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <p>© 2026 Passionate Mind. Bundle ID: <code>com.passionatemind.waterfall</code></p>
+      </footer>
+    </div>
   </body>
 </html>
