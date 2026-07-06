@@ -10,9 +10,26 @@ Public documentation for the [Waterfall](https://github.com/Halley04/Waterfall) 
 
 ## GitHub Pages
 
-**Settings → Pages → Source:** Deploy from branch `main`, folder **`/ (root)`**.
+1. **Settings → Pages → Build and deployment → Source:** **GitHub Actions** (not “Deploy from a branch”).
+2. **Settings → Actions → General → Workflow permissions:** **Read and write permissions**.
+3. Push to `main` — the `Deploy site` workflow publishes the site.
 
-This repository is **public** so GitHub Pages works on the free plan. The app source stays in the private `Waterfall` repo.
+Live URLs:
+
+- https://halley04.github.io/Waterfall-docs/
+- https://halley04.github.io/Waterfall-docs/privacy.html
+- https://halley04.github.io/Waterfall-docs/terms.html
+
+### If deploy fails
+
+| Check | Where |
+|-------|--------|
+| Source is **GitHub Actions** | Settings → Pages |
+| **Read and write** for GITHUB_TOKEN | Settings → Actions → General |
+| No pending approval | Actions → failed run → `github-pages` environment |
+| Re-run | Actions → **Deploy site** → Re-run all jobs |
+
+The older automatic “pages build and deployment” workflow fails on some accounts until workflow permissions are enabled.
 
 ## Support
 
