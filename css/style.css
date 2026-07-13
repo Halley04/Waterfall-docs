@@ -185,14 +185,3 @@ footer {
   color: var(--muted);
   font-size: 0.9rem;
 }
-
-.lang-divider {
-  margin: 2.5rem 0 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}

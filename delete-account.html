@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>계정 삭제 — Waterfall</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/i18n.js" defer></script>
+  </head>
+  <body data-default-lang="ko">
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="ko" class="active" aria-pressed="true">한국어</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false">English</button>
+    </div>
+
+    <div data-lang-block="ko">
+      <span data-page-title hidden>계정 삭제 — Waterfall</span>
+      <header>
+        <h1>계정 및 데이터 삭제</h1>
+        <p>Waterfall 모바일 애플리케이션</p>
+      </header>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html">홈</a>
+          <a href="privacy.html">개인정보 처리방침</a>
+          <a href="terms.html">이용약관</a>
+          <a href="delete-account.html">계정 삭제</a>
+        </div>
+      </nav>
+      <main>
+        <p class="meta">
+          <strong>앱 이름:</strong> Waterfall · <strong>개발자:</strong> Passionate Mind ·
+          <strong>번들 ID:</strong> <code>app.waterfall.focus</code>
+        </p>
+
+        <p>
+          Waterfall 계정과 연결된 개인정보를 삭제하려면 아래 절차를 따라 주세요. 요청이 확인되면
+          계정과 서버에 저장된 관련 데이터를 지체 없이 삭제합니다.
+        </p>
+
+        <h2>계정 삭제 요청 방법</h2>
+        <ol>
+          <li>
+            아래 <strong>계정 삭제 요청</strong> 버튼을 눌러 GitHub Issues 양식을 엽니다.
+          </li>
+          <li>
+            로그인에 사용한 <strong>이메일 또는 소셜 로그인 제공자</strong>(Google, Kakao, Apple)와
+            앱에서 설정한 <strong>닉네임</strong>(알고 있는 경우)을 적어 주세요.
+          </li>
+          <li>계정 영구 삭제에 동의한다는 내용을 포함해 제출합니다.</li>
+          <li>확인 후 영업일 기준 <strong>최대 30일 이내</strong>에 처리합니다. 완료되면 같은
+            스레드로 안내드립니다.</li>
+        </ol>
+
+        <div class="cta-row">
+          <a
+            href="https://github.com/Halley04/Waterfall-docs/issues/new?title=Waterfall%20%EA%B3%84%EC%A0%95%20%EC%82%AD%EC%A0%9C%20%EC%9A%94%EC%B2%AD&amp;body=%EB%8B%88%EC%A0%95%3A%20%0A%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20(Google%2FKakao%2FApple%20%EB%B0%8F%20%EC%9D%B4%EB%A9%94%EC%9D%BC)%3A%20%0A%0A%EA%B3%84%EC%A0%95%EA%B3%BC%20%EC%97%B0%EA%B2%B0%EB%90%9C%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC%20%EC%98%81%EA%B5%AC%20%EC%82%AD%EC%A0%9C%ED%95%98%EB%8A%94%20%EA%B2%83%EC%97%90%20%EB%8F%99%EC%9D%98%ED%95%A9%EB%8B%88%EB%8B%A4."
+            >계정 삭제 요청</a
+          >
+          <a href="privacy.html" class="secondary">개인정보 처리방침</a>
+        </div>
+
+        <h2>삭제되는 데이터</h2>
+        <p>계정 삭제가 완료되면 다음 서버 데이터가 삭제됩니다.</p>
+        <ul>
+          <li>Firebase 인증 계정</li>
+          <li>프로필 정보(닉네임, 프로필 사진 URL)</li>
+          <li>비공개 워터폴(포커스 존) 및 집중 세션 기록</li>
+          <li>공개 리더보드에 표시된 해당 이용자 기록</li>
+          <li>Firebase Storage에 업로드한 프로필 이미지</li>
+        </ul>
+
+        <h2>삭제되지 않거나 기기에 남을 수 있는 데이터</h2>
+        <ul>
+          <li>
+            <strong>기기 로컬 데이터</strong>(차단 앱 목록, Hive 캐시 등)는 앱을 삭제하면 기기에서
+            제거됩니다. 계정 삭제 요청만으로는 자동으로 지워지지 않을 수 있습니다.
+          </li>
+          <li>
+            <strong>법령에 따른 보관:</strong> 관계 법령에서 정한 기간 동안 보관이 필요한 기록이
+            있는 경우, 해당 기간 동안만 별도 보관 후 파기합니다.
+          </li>
+          <li>
+            익명화·집계된 통계 등 개인을 식별할 수 없는 형태의 데이터는 서비스 개선 목적으로
+            보관될 수 있습니다.
+          </li>
+        </ul>
+
+        <h2>계정 없이 삭제할 수 있는 데이터</h2>
+        <p>계정을 유지한 채 앱에서 직접 삭제·수정할 수 있는 항목:</p>
+        <ul>
+          <li>닉네임 및 프로필 사진 수정</li>
+          <li>본인이 만든 비공개 워터폴 삭제</li>
+          <li>기기 설정에서 위치 권한 철회(기능 제한 가능)</li>
+        </ul>
+        <p>
+          위 항목만으로는 계정 전체가 삭제되지 않습니다. 계정 삭제는 위
+          <strong>계정 삭제 요청</strong> 절차를 이용해 주세요.
+        </p>
+
+        <h2>문의</h2>
+        <p>
+          기타 개인정보 관련 문의:
+          <a href="https://github.com/Halley04/Waterfall-docs/issues">GitHub Issues</a> ·
+          <a href="privacy.html">개인정보 처리방침</a>
+        </p>
+      </main>
+      <footer>
+        <p>© 2026 Passionate Mind. 번들 ID: <code>app.waterfall.focus</code></p>
+      </footer>
+    </div>
+
+    <div data-lang-block="en" hidden>
+      <span data-page-title hidden>Account deletion — Waterfall</span>
+      <header>
+        <h1>Account &amp; data deletion</h1>
+        <p>Waterfall mobile application</p>
+      </header>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="delete-account.html">Account deletion</a>
+        </div>
+      </nav>
+      <main>
+        <p class="meta">
+          <strong>App name:</strong> Waterfall · <strong>Developer:</strong> Passionate Mind ·
+          <strong>Bundle ID:</strong> <code>app.waterfall.focus</code>
+        </p>
+
+        <p>
+          To delete your Waterfall account and associated personal data, follow the steps below.
+          Once we verify your request, we delete your account and related server data without undue
+          delay.
+        </p>
+
+        <h2>How to request account deletion</h2>
+        <ol>
+          <li>Click <strong>Request account deletion</strong> below to open our GitHub Issues form.</li>
+          <li>
+            Include the <strong>email or sign-in provider</strong> you use (Google, Kakao, or Apple)
+            and your <strong>nickname</strong> in the app, if known.
+          </li>
+          <li>Confirm that you want permanent deletion of your account.</li>
+          <li>
+            We process verified requests within <strong>30 calendar days</strong> and reply on the
+            same issue thread when complete.
+          </li>
+        </ol>
+
+        <div class="cta-row">
+          <a
+            href="https://github.com/Halley04/Waterfall-docs/issues/new?title=Waterfall%20account%20deletion%20request&amp;body=Nickname%3A%20%0ASign-in%20(Google%2FKakao%2FApple%20and%20email)%3A%20%0A%0AI%20confirm%20I%20want%20permanent%20deletion%20of%20my%20Waterfall%20account%20and%20associated%20data."
+            >Request account deletion</a
+          >
+          <a href="privacy.html" class="secondary">Privacy Policy</a>
+        </div>
+
+        <h2>Data that is deleted</h2>
+        <p>When account deletion is completed, we remove:</p>
+        <ul>
+          <li>Your Firebase Authentication account</li>
+          <li>Profile data (nickname, profile photo URL)</li>
+          <li>Private waterfalls (focus zones) and focus session records</li>
+          <li>Your entries on public leaderboards</li>
+          <li>Profile images stored in Firebase Storage</li>
+        </ul>
+
+        <h2>Data that may be kept or remain on device</h2>
+        <ul>
+          <li>
+            <strong>On-device data</strong> (blocked-app list, local Hive cache, etc.) is removed when
+            you uninstall the app. A server-side deletion request alone may not erase local data
+            automatically.
+          </li>
+          <li>
+            <strong>Legal retention:</strong> if we must retain certain records under applicable law,
+            we keep them only for the required period, then destroy them.
+          </li>
+          <li>
+            Anonymized or aggregated data that cannot identify you may be retained for service
+            improvement.
+          </li>
+        </ul>
+
+        <h2>Deleting data without deleting your account</h2>
+        <p>You can change or remove some data inside the app while keeping your account:</p>
+        <ul>
+          <li>Edit nickname and profile photo</li>
+          <li>Delete private waterfalls you created</li>
+          <li>Revoke location permission in device settings (may limit features)</li>
+        </ul>
+        <p>
+          These actions do <strong>not</strong> delete your entire account. Use the
+          <strong>Request account deletion</strong> flow above for full account removal.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Other privacy questions:
+          <a href="https://github.com/Halley04/Waterfall-docs/issues">GitHub Issues</a> ·
+          <a href="privacy.html">Privacy Policy</a>
+        </p>
+      </main>
+      <footer>
+        <p>© 2026 Passionate Mind. Bundle ID: <code>app.waterfall.focus</code></p>
+      </footer>
+    </div>
+  </body>
+</html>
