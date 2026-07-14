@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waterfall — 30 block screen concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sky: #e8f4fc;
+      --mid: #c5dcf5;
+      --pool: #9ec5eb;
+      --ink: #142033;
+      --text: #1a2b3d;
+      --muted: #5a6f85;
+      --blue: #2b7ede;
+      --teal: #3696a8;
+      --deep: #4a5a9e;
+      --foam: #f3f8fc;
+      --glass: rgba(255, 255, 255, 0.42);
+      --glass-strong: rgba(255, 255, 255, 0.62);
+      --border: rgba(255, 255, 255, 0.55);
+      --page: #0f1724;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Figtree, sans-serif;
+      background: var(--page);
+      color: #e8eef6;
+      padding: 32px 24px 80px;
+    }
+
+    header {
+      max-width: 1280px;
+      margin: 0 auto 28px;
+    }
+    header h1 {
+      font-family: Fraunces, serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      margin: 0;
+      color: #94a8c0;
+      max-width: 56ch;
+      line-height: 1.5;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      align-items: center;
+    }
+    .toolbar button {
+      border: 1px solid #2a3a52;
+      background: #162033;
+      color: #d7e4f5;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: 500 13px Figtree, sans-serif;
+      cursor: pointer;
+    }
+    .toolbar button.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+    .note {
+      font-size: 13px;
+      color: #7f93ab;
+      margin-left: auto;
+    }
+
+    .grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 28px 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      padding: 0 4px;
+    }
+    .meta .id {
+      font-size: 12px;
+      font-weight: 700;
+      color: #8eb4e8;
+      letter-spacing: 0.04em;
+    }
+    .meta .name {
+      font-size: 13px;
+      color: #c5d4e6;
+      text-align: right;
+    }
+
+    .phone {
+      aspect-ratio: 9 / 19.5;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid #2c3c55;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      background: linear-gradient(180deg, var(--sky), var(--mid) 48%, var(--pool));
+      color: var(--text);
+    }
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 78px;
+      height: 12px;
+      background: #0f1724;
+      border-radius: 999px;
+      z-index: 5;
+      opacity: 0.85;
+    }
+    .screen {
+      position: absolute;
+      inset: 0;
+      padding: 42px 16px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .brand {
+      font-family: Fraunces, serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin: 0;
+    }
+    .body {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: var(--muted);
+      margin: 0;
+      max-width: 22ch;
+    }
+    .glass {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 16px 14px;
+      width: 100%;
+    }
+    .btn {
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: 700 11.5px Figtree, sans-serif;
+      cursor: default;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+    }
+    .btn-ghost {
+      background: var(--glass-strong);
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #7aa7e8, #4a6db5);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      margin: 0 auto 4px;
+    }
+    .icon.round { border-radius: 50%; }
+    .stack { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .row { display: flex; gap: 8px; width: 100%; align-items: center; justify-content: center; }
+    .tiny { font-size: 10px; color: var(--muted); }
+    .big-num {
+      font-family: Fraunces, serif;
+      font-size: 42px;
+      line-height: 0.95;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .ring {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3px solid rgba(43, 126, 222, 0.25);
+      border-top-color: var(--blue);
+      display: grid;
+      place-items: center;
+    }
+    .mist {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.55), transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(255,255,255,0.35), transparent 45%),
+        linear-gradient(180deg, var(--sky), var(--mid) 55%, var(--pool));
+      z-index: 0;
+    }
+    .content { position: relative; z-index: 1; width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+
+    /* Variants with darker/mood backgrounds override .phone */
+    .phone.deep { background: linear-gradient(180deg, #1a2b4a, #2b4a6e 50%, #3a6a8a); color: #e8f0f8; }
+    .phone.deep .title, .phone.deep .brand, .phone.deep .big-num { color: #f4f8fc; }
+    .phone.deep .body, .phone.deep .eyebrow, .phone.deep .tiny { color: #b7c9dc; }
+    .phone.deep .glass { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+    .phone.deep .btn-ghost { background: rgba(255,255,255,0.14); color: #f4f8fc; border-color: rgba(255,255,255,0.22); }
+
+    .phone.teal { background: linear-gradient(180deg, #d7f0f4, #9ed3de 50%, #5fadc0); }
+    .phone.ink { background: linear-gradient(180deg, #102033, #142033 40%, #1c334f); color: #e8f0f8; }
+    .phone.ink .title, .phone.ink .brand, .phone.ink .big-num { color: #f4f8fc; }
+    .phone.ink .body, .phone.ink .eyebrow, .phone.ink .tiny { color: #9eb3cb; }
+    .phone.ink .glass { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); }
+    .phone.ink .btn-ghost { background: rgba(255,255,255,0.1); color: #f4f8fc; border-color: rgba(255,255,255,0.18); }
+
+    .phone.foam { background: linear-gradient(180deg, #f7fbfe, #e8f4fc 60%, #d4e8f7); }
+
+    .poster-line {
+      width: 100%;
+      text-align: left;
+      padding: 0 4px;
+    }
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--blue);
+      opacity: 0.5;
+      border-radius: 2px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--glass-strong);
+      border: 1px solid var(--border);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 36px;
+    }
+    .bars span {
+      width: 5px;
+      border-radius: 2px;
+      background: var(--blue);
+      opacity: 0.75;
+    }
+    .bottom-sheet {
+      margin-top: auto;
+      width: 100%;
+      background: rgba(255,255,255,0.78);
+      border-radius: 20px 20px 0 0;
+      padding: 18px 14px 12px;
+      border: 1px solid var(--border);
+      border-bottom: 0;
+    }
+    .silhouette {
+      width: 100%;
+      height: 70px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(74,90,158,0.45), transparent 70%),
+        linear-gradient(180deg, transparent 30%, rgba(43,126,222,0.18));
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .silhouette::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 22px;
+      background: rgba(42, 90, 150, 0.5);
+      clip-path: polygon(0 40%, 12% 20%, 28% 55%, 45% 10%, 62% 50%, 78% 15%, 100% 45%, 100% 100%, 0 100%);
+    }
+    .filter-hide { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>30 block screen concepts</h1>
+    <p>
+      Preview only — nothing is wired into the Android <code>BlockActivity</code> yet.
+      Pick favorites (IDs), then we can implement a rotation or themed set.
+      Blocked app shown as <strong>Instagram</strong> for consistency.
+    </p>
+    <div class="toolbar">
+      <button type="button" class="active" data-filter="all">All 30</button>
+      <button type="button" data-filter="calm">Calm</button>
+      <button type="button" data-filter="strict">Strict</button>
+      <button type="button" data-filter="ritual">Ritual</button>
+      <button type="button" data-filter="data">Data</button>
+      <span class="note">Current shipping UI ≈ #01</span>
+    </div>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const concepts = [
+      {
+        id: "01", tags: ["calm"], name: "Current glass card",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <div class="glass stack">
+              <div class="icon">Ig</div>
+              <div class="row"><span class="tiny">💧</span><p class="title" style="font-size:15px">App blocked</p></div>
+              <p class="body">Instagram is blocked while you are in a waterfall zone.</p>
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "02", tags: ["calm"], name: "Brand-first mist",
+        html: `
+          <div class="mist"></div>
+          <div class="content" style="justify-content:flex-end;padding-bottom:28px">
+            <p class="brand" style="font-size:28px;margin:0 auto auto 0;align-self:flex-start;padding-left:4px">Waterfall</p>
+            <div class="stack" style="gap:12px">
+              <p class="title">Instagram can wait.</p>
+              <p class="body">You’re inside Library Zone. Stay with the flow.</p>
+              <button class="btn btn-primary">Return to Waterfall</button>
+              <button class="btn btn-ghost">Home screen</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "03", tags: ["strict"], name: "Full-bleed lock",
+        phoneClass: "ink",
+        html: `
+          <div class="content">
+            <div class="ring"><span style="font-size:22px">⊘</span></div>
+            <p class="title">Blocked</p>
+            <p class="body">Instagram isn’t available in this zone.</p>
+            <div class="stack" style="margin-top:12px">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Leave for now</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "04", tags: ["ritual"], name: "Breath pause",
+        phoneClass: "teal",
+        html: `
+          <div class="content">
+            <div class="ring"><span class="tiny" style="color:inherit">breathe</span></div>
+            <p class="title">One breath first</p>
+            <p class="body">Instagram is paused. Inhale 4 · hold 4 · exhale 4.</p>
+            <div class="stack" style="margin-top:8px">
+              <button class="btn btn-primary">I’m ready — Waterfall</button>
+              <button class="btn btn-ghost">Not now</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "05", tags: ["data"], name: "Session timer",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <p class="eyebrow">In the flow</p>
+            <p class="big-num">24:18</p>
+            <p class="body">Focus time in Library Zone</p>
+            <div class="glass stack" style="margin-top:8px">
+              <p class="tiny">Instagram blocked</p>
+              <button class="btn btn-primary">Keep going</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "06", tags: ["ritual"], name: "Zone mantra",
+        html: `
+          <div class="mist"></div>
+          <div class="content" style="align-items:stretch">
+            <div class="poster-line">
+              <p class="eyebrow">Library Zone</p>
+              <p class="brand" style="font-size:26px;line-height:1.15;margin:8px 0">Stay<br/>where<br/>you are.</p>
+              <div class="divider"></div>
+              <p class="body" style="margin-top:12px;text-align:left;max-width:none">Instagram will be here when you leave the zone.</p>
+            </div>
+            <div class="stack" style="margin-top:auto">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "07", tags: ["calm"], name: "Soft redirect",
+        phoneClass: "foam",
+        html: `
+          <div class="content">
+            <span class="pill">Focus zone</span>
+            <p class="title" style="margin-top:8px">A gentler path</p>
+            <p class="body">Instead of Instagram, open Waterfall or return home.</p>
+            <div class="stack" style="margin-top:14px">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "08", tags: ["data"], name: "Streak glance",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <div class="glass stack">
+              <p class="eyebrow">Don’t break it</p>
+              <p class="big-num" style="font-size:36px">12</p>
+              <p class="body">day focus streak · Instagram blocked</p>
+              <button class="btn btn-primary">Protect streak</button>
+              <button class="btn btn-ghost">Leave zone</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "09", tags: ["ritual"], name: "Waveform quiet",
+        phoneClass: "deep",
+        html: `
+          <div class="content">
+            <div class="bars">
+              <span style="height:12px"></span><span style="height:22px"></span><span style="height:30px"></span>
+              <span style="height:18px"></span><span style="height:28px"></span><span style="height:14px"></span>
+              <span style="height:24px"></span><span style="height:10px"></span>
+            </div>
+            <p class="title">Quiet water</p>
+            <p class="body">Instagram is muted in this zone.</p>
+            <div class="stack" style="margin-top:10px">
+              <button class="btn btn-primary">Back to Waterfall</button>
+              <button class="btn btn-ghost">Home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "10", tags: ["strict"], name: "One button only",
+        phoneClass: "ink",
+        html: `
+          <div class="content">
+            <p class="eyebrow">Waterfall</p>
+            <p class="title">Instagram is closed here</p>
+            <p class="body">Leave the zone to use it again.</p>
+            <button class="btn btn-primary" style="margin-top:18px">OK</button>
+          </div>`
+      },
+      {
+        id: "11", tags: ["calm"], name: "App ghost + CTA",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <div class="icon" style="opacity:0.35;filter:grayscale(1)">Ig</div>
+            <p class="title">Not right now</p>
+            <p class="body">You’re in a waterfall. Instagram can wait.</p>
+            <div class="stack" style="margin-top:10px">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "12", tags: ["data"], name: "Zone presence",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <p class="eyebrow">Library Zone</p>
+            <p class="brand" style="font-size:22px">Still here</p>
+            <div class="glass stack" style="margin-top:6px">
+              <p class="body" style="max-width:none">4 people focusing nearby · Instagram blocked for you</p>
+              <button class="btn btn-primary">Join the flow</button>
+              <button class="btn btn-ghost">Home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "13", tags: ["ritual"], name: "Quote card",
+        phoneClass: "foam",
+        html: `
+          <div class="content">
+            <div class="glass" style="text-align:left">
+              <p class="brand" style="font-size:18px;line-height:1.35">“Attention is the rarest form of generosity.”</p>
+              <p class="tiny" style="margin-top:10px">— Simone Weil</p>
+            </div>
+            <p class="body">Instagram is blocked in this zone.</p>
+            <div class="stack">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "14", tags: ["calm"], name: "Bottom sheet",
+        html: `
+          <div class="mist"></div>
+          <div class="content" style="justify-content:flex-end;padding:0">
+            <p class="brand" style="position:absolute;top:48px;left:18px;font-size:20px">Waterfall</p>
+            <div class="bottom-sheet stack">
+              <p class="title" style="text-align:left">Instagram blocked</p>
+              <p class="body" style="text-align:left;max-width:none">You’re inside a focus zone.</p>
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "15", tags: ["strict"], name: "Typography poster",
+        phoneClass: "deep",
+        html: `
+          <div class="content" style="align-items:stretch;justify-content:space-between">
+            <p class="eyebrow" style="text-align:left">BLOCKED</p>
+            <p class="brand" style="font-size:34px;line-height:0.95;text-align:left">No<br/>feed<br/>here.</p>
+            <div class="stack">
+              <p class="body" style="text-align:left;max-width:none">Instagram · Library Zone</p>
+              <button class="btn btn-primary">Waterfall</button>
+              <button class="btn btn-ghost">Home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "16", tags: ["ritual"], name: "Waterfall silhouette",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <div class="silhouette"></div>
+            <p class="title">Stay in the fall</p>
+            <p class="body">Instagram is outside this moment.</p>
+            <div class="stack">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "17", tags: ["data"], name: "Today’s focus",
+        phoneClass: "teal",
+        html: `
+          <div class="content">
+            <p class="eyebrow">Today</p>
+            <p class="big-num" style="font-size:34px">1h 42m</p>
+            <p class="body">focused · Instagram blocked now</p>
+            <div class="stack" style="margin-top:12px">
+              <button class="btn btn-primary">Continue</button>
+              <button class="btn btn-ghost">Home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "18", tags: ["calm"], name: "Korean calm",
+        phoneClass: "foam",
+        html: `
+          <div class="content">
+            <p class="brand" style="font-size:24px">워터폴</p>
+            <p class="title">지금은 집중할 시간</p>
+            <p class="body">이 구역에서는 Instagram을 사용할 수 없어요.</p>
+            <div class="stack" style="margin-top:10px">
+              <button class="btn btn-primary">워터폴 열기</button>
+              <button class="btn btn-ghost">뒤로</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "19", tags: ["strict"], name: "Snooze warning",
+        phoneClass: "ink",
+        html: `
+          <div class="content">
+            <div class="icon round" style="background:#d97b45">!</div>
+            <p class="title">Leaving focus?</p>
+            <p class="body">Going back snoozes the block for Instagram briefly.</p>
+            <div class="stack" style="margin-top:10px">
+              <button class="btn btn-primary">Stay — Open Waterfall</button>
+              <button class="btn btn-ghost">Snooze & leave</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "20", tags: ["ritual"], name: "Check-in",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <p class="eyebrow">Check-in</p>
+            <p class="title">Why open Instagram?</p>
+            <div class="stack" style="gap:6px;margin-top:4px">
+              <button class="btn btn-ghost">Urgent message</button>
+              <button class="btn btn-ghost">Habit / boredom</button>
+              <button class="btn btn-primary">Never mind — Waterfall</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "21", tags: ["calm"], name: "Split message",
+        html: `
+          <div class="mist"></div>
+          <div class="content" style="padding-top:48px;justify-content:flex-start">
+            <div class="glass" style="margin-bottom:auto">
+              <p class="tiny">Blocked app</p>
+              <p class="title" style="margin-top:4px">Instagram</p>
+            </div>
+            <div class="stack">
+              <p class="body">Available again when you leave Library Zone.</p>
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "22", tags: ["data"], name: "Ring progress",
+        phoneClass: "deep",
+        html: `
+          <div class="content">
+            <div class="ring"><span class="big-num" style="font-size:22px;color:inherit">68%</span></div>
+            <p class="title">Zone goal</p>
+            <p class="body">Keep going — Instagram can wait.</p>
+            <div class="stack" style="margin-top:8px">
+              <button class="btn btn-primary">Resume Waterfall</button>
+              <button class="btn btn-ghost">Home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "23", tags: ["ritual"], name: "Slow drip",
+        phoneClass: "teal",
+        html: `
+          <div class="content">
+            <p style="font-size:40px;line-height:1;margin:0;opacity:0.7">💧</p>
+            <p class="title">Drop by drop</p>
+            <p class="body">Attention gathers. Instagram is paused.</p>
+            <div class="stack" style="margin-top:8px">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "24", tags: ["strict"], name: "Map escape only",
+        phoneClass: "ink",
+        html: `
+          <div class="content">
+            <p class="eyebrow">Geofence active</p>
+            <p class="title">Out of bounds</p>
+            <p class="body">Instagram is outside Library Zone.</p>
+            <div class="stack" style="margin-top:14px">
+              <button class="btn btn-primary">Show zone on map</button>
+              <button class="btn btn-ghost">Home screen</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "25", tags: ["calm"], name: "Minimal wordmark",
+        phoneClass: "foam",
+        html: `
+          <div class="content">
+            <p class="brand" style="font-size:30px;margin-bottom:auto;margin-top:24px">Waterfall</p>
+            <p class="body" style="margin-bottom:8px">Instagram · blocked in zone</p>
+            <div class="stack">
+              <button class="btn btn-primary">Continue</button>
+              <button class="btn btn-ghost">Home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "26", tags: ["data"], name: "Interrupt count",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <div class="glass stack">
+              <p class="eyebrow">This visit</p>
+              <p class="big-num" style="font-size:40px">3</p>
+              <p class="body">times Instagram tried to pull you out</p>
+              <button class="btn btn-primary">Stay in Waterfall</button>
+              <button class="btn btn-ghost">Go back</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "27", tags: ["ritual"], name: "Morning / evening tone",
+        phoneClass: "deep",
+        html: `
+          <div class="content">
+            <p class="eyebrow">Evening pool</p>
+            <p class="title">Dim the noise</p>
+            <p class="body">Instagram stays dark while you’re here.</p>
+            <div class="stack" style="margin-top:12px">
+              <button class="btn btn-primary">Open Waterfall</button>
+              <button class="btn btn-ghost">Rest at home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "28", tags: ["calm"], name: "Two paths equal",
+        html: `
+          <div class="mist"></div>
+          <div class="content">
+            <p class="title">Choose your exit</p>
+            <p class="body">Instagram isn’t an option in this zone.</p>
+            <div class="stack" style="margin-top:14px;gap:10px">
+              <button class="btn btn-primary" style="padding:16px 12px">Waterfall map</button>
+              <button class="btn btn-ghost" style="padding:16px 12px">Phone home</button>
+            </div>
+          </div>`
+      },
+      {
+        id: "29", tags: ["strict"], name: "Hard stop",
+        phoneClass: "ink",
+        html: `
+          <div class="content">
+            <p class="brand" style="font-size:18px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.7">Stop</p>
+            <p class="title" style="font-size:22px;margin-top:8px">Zone lock</p>
+            <p class="body">Instagram · Library Zone</p>
+            <button class="btn btn-primary" style="margin-top:20px">Return</button>
+          </div>`
+      },
+      {
+        id: "30", tags: ["ritual"], name: "Closing line",
+        phoneClass: "teal",
+        html: `
+          <div class="content">
+            <p class="eyebrow">Waterfall</p>
+            <p class="brand" style="font-size:22px;line-height:1.25;max-width:14ch">The feed will still be there.</p>
+            <p class="body">You won’t get this quiet moment back.</p>
+            <div class="stack" style="margin-top:12px">
+              <button class="btn btn-primary">Stay — Open Waterfall</button>
+              <button class="btn btn-ghost">Leave anyway</button>
+            </div>
+          </div>`
+      },
+    ];
+
+    const grid = document.getElementById("grid");
+
+    function render(filter) {
+      grid.innerHTML = "";
+      concepts.forEach((c) => {
+        if (filter !== "all" && !c.tags.includes(filter)) return;
+        const card = document.createElement("article");
+        card.className = "card";
+        card.dataset.tags = c.tags.join(" ");
+        card.innerHTML = `
+          <div class="meta"><span class="id">#${c.id}</span><span class="name">${c.name}</span></div>
+          <div class="phone ${c.phoneClass || ""}"><div class="screen">${c.html}</div></div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    render("all");
+
+    document.querySelectorAll(".toolbar button[data-filter]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".toolbar button[data-filter]").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        render(btn.dataset.filter);
+      });
+    });
+  </script>
+</body>
+</html>
